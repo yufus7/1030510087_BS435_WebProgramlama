@@ -1,6 +1,7 @@
 package com.yufus.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -19,11 +20,11 @@ public class Student {
     @Column(name = "studentClass")
     private Integer studentClass;
 
-    @OneToOne(mappedBy = "student", fetch = FetchType.EAGER)
+    @ManyToOne
     private  Department department;
 
-    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
-    private  Lesson lesson;
+    @ManyToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    private List<Lesson> lessons;
 
     public Student(){
     }
@@ -44,11 +45,19 @@ public class Student {
         return studentClass;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
     public void setDepartment(Department department) {
         this.department = department;
     }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 }
