@@ -23,7 +23,7 @@ public class Student {
     @ManyToOne
     private  Department department;
 
-    @ManyToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "student")
     private List<Lesson> lessons;
 
     public Student(){

@@ -1,6 +1,7 @@
 package com.yufus.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,10 +15,10 @@ public class Department {
     @Column(name = "departmentName")
     private String departmentName;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department")
     private List<Student> students;
 
-    @ManyToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department")
     private List<Lesson> lessons;
 
     public  Department(){

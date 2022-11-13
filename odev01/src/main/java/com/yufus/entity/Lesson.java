@@ -13,11 +13,11 @@ public class Lesson {
     @Column(name = "lessonName")
     private String lessonName;
 
-    @ManyToMany(mappedBy = "lesson", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "lesson")
     private List<Student> students;
 
-    @ManyToMany(mappedBy = "lesson", fetch = FetchType.EAGER)
-    private List<Department> department;
+    @ManyToOne
+    private Department department;
 
     public Lesson() {
     }
@@ -34,7 +34,7 @@ public class Lesson {
         return students;
     }
 
-    public List<Department> getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
@@ -42,8 +42,7 @@ public class Lesson {
         this.students = students;
     }
 
-    public void setDepartment(List<Department> department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
-
 }
