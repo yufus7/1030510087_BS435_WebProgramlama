@@ -1,8 +1,6 @@
 package com.yufus.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "students")
