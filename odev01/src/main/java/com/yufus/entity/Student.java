@@ -1,6 +1,7 @@
 package com.yufus.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,10 +12,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "studentName")
+    @Column(name = "studentName",length = 20)
     private String studentName;
 
-    @Column(name = "studentSurname")
+    @Column(name = "studentSurname",length = 25)
     private String studentSurname;
 
     @Column(name = "studentClass")
@@ -23,8 +24,8 @@ public class Student {
     @ManyToOne
     private  Department department;
 
-    @ManyToMany(mappedBy = "student")
-    private List<Lesson> lessons;
+    @ManyToOne
+    private Advisor advisor;
 
     public Student(){
     }
@@ -37,27 +38,39 @@ public class Student {
         return studentName;
     }
 
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
     public String getStudentSurname() {
         return studentSurname;
+    }
+
+    public void setStudentSurname(String studentSurname) {
+        this.studentSurname = studentSurname;
     }
 
     public Integer getStudentClass() {
         return studentClass;
     }
 
-    public Department getDepartment() {
-        return department;
+    public void setStudentClass(Integer studentClass) {
+        this.studentClass = studentClass;
     }
 
-    public List<Lesson> getLessons() {
-        return lessons;
+    public Department getDepartment() {
+        return department;
     }
 
     public void setDepartment(Department department) {
         this.department = department;
     }
 
-    public void setLessons(List<Lesson> lessons) {
-        this.lessons = lessons;
+    public Advisor getAdvisor() {
+        return advisor;
+    }
+
+    public void setAdvisor(Advisor advisor) {
+        this.advisor = advisor;
     }
 }
