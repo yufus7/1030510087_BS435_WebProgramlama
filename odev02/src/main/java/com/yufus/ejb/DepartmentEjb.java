@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.validation.constraints.NotNull;
+
 
 @Stateless
 public class DepartmentEjb {
@@ -26,7 +26,6 @@ public class DepartmentEjb {
 
     public Department getDepartmentById(long departmentId){
         Department department = entityManager.find(Department.class,departmentId);
-
         return department;
     }
 
