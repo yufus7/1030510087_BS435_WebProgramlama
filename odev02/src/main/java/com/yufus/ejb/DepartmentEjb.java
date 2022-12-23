@@ -3,11 +3,13 @@ package com.yufus.ejb;
 
 import com.yufus.entity.Department;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 
+@Stateless
 public class DepartmentEjb {
 
     @PersistenceContext
@@ -15,21 +17,19 @@ public class DepartmentEjb {
 
     public DepartmentEjb(){}
 
-    public void registerNewDepartment(Long id, String departmentName){
-        if(isRegistered(id)){
-            return;
-        }
-
+    public void registerNewDepartment(String departmentName){
         Department department = new Department();
         department.setDepartmentName(departmentName);
 
         entityManager.persist(department);
     }
 
-    public boolean isRegistered(@NotNull Long id){
-        Department department = entityManager.find(Department.class, id);
-        return department != null;
+    public Department getDepartmentById(long departmentId){
+        Department department = entityManager.find(Department.class,departmentId);
+
+        return department;
     }
+
 
     public long getNumberOfDepartments(){
         TypedQuery<Long> query = entityManager.createQuery("select count(s) from Department s", Long.class);

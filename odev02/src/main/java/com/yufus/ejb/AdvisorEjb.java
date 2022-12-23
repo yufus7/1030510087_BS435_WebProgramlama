@@ -2,12 +2,15 @@ package com.yufus.ejb;
 
 
 import com.yufus.entity.Advisor;
+import com.yufus.entity.Department;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 
+@Stateless
 public class AdvisorEjb {
 
     @PersistenceContext
@@ -15,20 +18,17 @@ public class AdvisorEjb {
 
     public AdvisorEjb(){}
 
-    public void registerNewAdvisor(Long id, String name){
-        if(isRegistered(id)){
-            return;
-        }
-
+    public void registerNewAdvisor(String name){
         Advisor advisor = new Advisor();
         advisor.setName(name);
 
         entityManager.persist(advisor);
     }
 
-    public boolean isRegistered(@NotNull Long id){
-        Advisor advisor = entityManager.find(Advisor.class, id);
-        return advisor != null;
+    public Advisor getAdvisorById(long advisorId){
+        Advisor advisor = entityManager.find(Advisor.class,advisorId);
+
+        return advisor;
     }
 
     public long getNumberOfAdvisors(){
